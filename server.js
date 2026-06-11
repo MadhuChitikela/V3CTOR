@@ -194,7 +194,13 @@ const routeEmails = async (name, email, subject, message) => {
             );
             console.log(`[RESEND] Admin notification sent to ${ADMIN_EMAIL}`);
 
-            // 2. Send Auto-Responder to Client
+            // 2. Send Auto-Responder to Client (Commented out for Sandbox Mode)
+            // =========================================================================
+            // NOTE: Uncomment the block below after you purchase a custom domain,
+            // verify it at resend.com/domains, and update 'onboarding@resend.dev'
+            // in sendResendEmail() to your custom domain sender (e.g., support@v3ctor.in).
+            // =========================================================================
+            /*
             try {
                 await sendResendEmail(
                     email,
@@ -220,6 +226,7 @@ const routeEmails = async (name, email, subject, message) => {
                 );
                 console.log(`[RESEND] Rerouted client auto-responder sent to ${ADMIN_EMAIL}`);
             }
+            */
             
             return { sent: true, mode: 'RESEND' };
         } catch (error) {
