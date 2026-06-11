@@ -202,7 +202,26 @@ const routeEmails = async (name, email, subject, message) => {
     }
 };
 
-const server = http.createServer((req, res) => {
+// Helper to validate admin dashboard password
+const validateAdminPassword = (req) => {
+    const adminPassword = process.env.ADMIN_PASSWORD || 'v3ctor2026';
+    const authHeader = req.headers['authorization'];
+    let passwordAttempt = '';
+    
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+        passwordAttempt = authHeader.substring(7);
+    } else {
+        try {
+            const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+            passwordAttempt = parsedUrl.searchParams.get('password') || '';
+        } catch (e) {
+            passwordAttempt = '';
+        }
+    }
+    return passwordAttempt === adminPassword;
+};
+
+const server = http.createServer(async (req, res) => {
     if (req.method === 'OPTIONS') {
         setCorsHeaders(res);
         res.writeHead(204);
@@ -210,7 +229,23 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    if (req.method === 'POST' && req.url === '/api/contact') {
+    // Parse URL pathname & searchParams
+    let pathname = '';
+    let searchParams = new URLSearchParams();
+    try {
+        const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+        pathname = parsedUrl.pathname;
+        searchParams = parsedUrl.searchParams;
+    } catch (e) {
+        const parts = req.url.split('?');
+        pathname = parts[0];
+        if (parts[1]) {
+            searchParams = new URLSearchParams(parts[1]);
+        }
+    }
+
+    // 1. POST /api/contact - Public submission endpoint
+    if (req.method === 'POST' && pathname === '/api/contact') {
         let body = '';
         
         req.on('data', chunk => {
@@ -290,10 +325,165 @@ const server = http.createServer((req, res) => {
         return;
     }
 
+    // 2. GET /api/submissions - Retrieve all logs (Secure)
+    if (req.method === 'GET' && pathname === '/api/submissions') {
+        setCorsHeaders(res);
+        res.setHeader('Content-Type', 'application/json');
+
+        if (!validateAdminPassword(req)) {
+            res.writeHead(401);
+            res.end(JSON.stringify({ status: 'error', message: 'Unauthorized access.' }));
+            return;
+        }
+
+        let submissions = [];
+        if (fs.existsSync(SUBMISSIONS_FILE)) {
+            try {
+                const fileData = fs.readFileSync(SUBMISSIONS_FILE, 'utf8');
+                submissions = JSON.parse(fileData);
+            } catch (e) {
+                submissions = [];
+            }
+        }
+        res.writeHead(200);
+        res.end(JSON.stringify(submissions));
+        return;
+    }
+
+    // 3. DELETE /api/submissions - Remove a submission log (Secure)
+    if (req.method === 'DELETE' && pathname === '/api/submissions') {
+        setCorsHeaders(res);
+        res.setHeader('Content-Type', 'application/json');
+
+        if (!validateAdminPassword(req)) {
+            res.writeHead(401);
+            res.end(JSON.stringify({ status: 'error', message: 'Unauthorized access.' }));
+            return;
+        }
+
+        const idToDelete = searchParams.get('id');
+        if (!idToDelete) {
+            res.writeHead(400);
+            res.end(JSON.stringify({ status: 'error', message: 'Submission ID is required.' }));
+            return;
+        }
+
+        let submissions = [];
+        if (fs.existsSync(SUBMISSIONS_FILE)) {
+            try {
+                const fileData = fs.readFileSync(SUBMISSIONS_FILE, 'utf8');
+                submissions = JSON.parse(fileData);
+            } catch (e) {
+                submissions = [];
+            }
+        }
+
+        const filtered = submissions.filter(sub => sub.id !== idToDelete);
+        if (submissions.length === filtered.length) {
+            res.writeHead(404);
+            res.end(JSON.stringify({ status: 'error', message: 'Submission entry not found.' }));
+            return;
+        }
+
+        try {
+            fs.writeFileSync(SUBMISSIONS_FILE, JSON.stringify(filtered, null, 4), 'utf8');
+            console.log(`[ADMIN DELETE] Deleted contact entry ID: ${idToDelete}`);
+            res.writeHead(200);
+            res.end(JSON.stringify({ status: 'success', message: 'Entry deleted successfully.' }));
+        } catch (writeError) {
+            res.writeHead(500);
+            res.end(JSON.stringify({ status: 'error', message: 'Failed to update database.' }));
+        }
+        return;
+    }
+
+    // 4. POST /api/test-smtp - SMTP Diagnostic verification signal (Secure)
+    if (req.method === 'POST' && pathname === '/api/test-smtp') {
+        setCorsHeaders(res);
+        res.setHeader('Content-Type', 'application/json');
+
+        if (!validateAdminPassword(req)) {
+            res.writeHead(401);
+            res.end(JSON.stringify({ status: 'error', message: 'Unauthorized access.' }));
+            return;
+        }
+
+        try {
+            console.log(`[SMTP DIAGNOSTIC] Initiating SMTP connection check...`);
+            const testResult = await routeEmails(
+                'V3CTOR Diagnostics Node', 
+                ADMIN_EMAIL, 
+                'SMTP Pipeline Diagnostic Success', 
+                'This message verifies that the V3CTOR email dispatch pipeline and SMTP authentication credentials are active and healthy. System signal successful.'
+            );
+            
+            res.writeHead(200);
+            res.end(JSON.stringify({ 
+                status: 'success', 
+                message: 'Test email successfully routed.', 
+                deliveryMode: testResult.mode 
+            }));
+        } catch (smtpError) {
+            console.error(`[SMTP DIAGNOSTIC ERROR] Failed SMTP handshake:`, smtpError.message);
+            res.writeHead(500);
+            res.end(JSON.stringify({ 
+                status: 'error', 
+                message: `SMTP diagnostic failed: ${smtpError.message}` 
+            }));
+        }
+        return;
+    }
+
+    // 5. GET /admin - Serve the Admin Dashboard view
+    if (req.method === 'GET' && (pathname === '/admin' || pathname === '/admin.html')) {
+        setCorsHeaders(res);
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        fs.createReadStream(path.join(__dirname, 'admin.html')).pipe(res);
+        return;
+    }
+
+    // 6. GET Static Files (index.html, style.css, logo, images)
+    if (req.method === 'GET') {
+        let reqUrl = pathname === '/' ? '/index.html' : pathname;
+        
+        // Resolve path securely and block directory traversals
+        const safeUrl = path.normalize(reqUrl).replace(/^(\.\.[\/\\])+/, '');
+        const filePath = path.join(__dirname, safeUrl);
+        
+        // Ensure path remains inside the project directory root
+        if (!filePath.startsWith(__dirname)) {
+            res.writeHead(403, { 'Content-Type': 'text/plain' });
+            res.end('Access Forbidden');
+            return;
+        }
+
+        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+            const ext = path.extname(filePath).toLowerCase();
+            const mimeTypes = {
+                '.html': 'text/html; charset=utf-8',
+                '.css': 'text/css; charset=utf-8',
+                '.js': 'application/javascript; charset=utf-8',
+                '.png': 'image/png',
+                '.jpg': 'image/jpeg',
+                '.jpeg': 'image/jpeg',
+                '.gif': 'image/gif',
+                '.svg': 'image/svg+xml',
+                '.json': 'application/json; charset=utf-8',
+                '.ico': 'image/x-icon'
+            };
+            const contentType = mimeTypes[ext] || 'application/octet-stream';
+            res.writeHead(200, { 'Content-Type': contentType });
+            fs.createReadStream(filePath).pipe(res);
+            return;
+        }
+    }
+
+    // fallback 404
     setCorsHeaders(res);
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'error', message: 'Endpoint not found.' }));
 });
+
 
 server.listen(PORT, () => {
     console.log(`==================================================`);
