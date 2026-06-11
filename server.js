@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const nodemailer = require('nodemailer');
+
 
 // Load local .env file if it exists (fallback for running "node server.js" without flags)
 const envPath = path.join(__dirname, '.env');
@@ -30,16 +30,8 @@ if (fs.existsSync(envPath)) {
 const PORT = process.env.PORT || 3000;
 const SUBMISSIONS_FILE = path.join(__dirname, 'submissions.json');
 
-// SMTP Configuration from Environment Variables
-const SMTP_CONFIG = {
-    host: process.env.SMTP_HOST || '',
-    port: parseInt(process.env.SMTP_PORT || '587', 10),
-    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for 587
-    auth: {
-        user: process.env.SMTP_USER || '',
-        pass: process.env.SMTP_PASS || ''
-    }
-};
+// Resend Configuration from Environment Variables
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'vertexproject.in@gmail.com';
 
@@ -139,55 +131,105 @@ const getAdminEmailTemplate = (name, email, subject, message) => {
     `;
 };
 
-// Function to handle email routing
-const routeEmails = async (name, email, subject, message) => {
-    // Check if SMTP details are provided
-    const hasSmtpConfig = SMTP_CONFIG.host && SMTP_CONFIG.auth.user && SMTP_CONFIG.auth.pass;
+// Helper function to send email via Resend HTTP REST API
+const sendResendEmail = async (to, subject, html, replyTo = '', inlineLogo = false) => {
+    if (!RESEND_API_KEY) {
+        throw new Error('Resend API Key is missing.');
+    }
 
-    if (hasSmtpConfig) {
-        console.log(`[SMTP] Attempting connection to ${SMTP_CONFIG.host}:${SMTP_CONFIG.port}...`);
+    const payload = {
+        from: 'V3CTOR Support <onboarding@resend.dev>',
+        to: [to],
+        subject: subject,
+        html: html
+    };
+
+    if (replyTo) {
+        payload.reply_to = replyTo;
+    }
+
+    if (inlineLogo) {
+        const logoPath = path.join(__dirname, 'logo.png');
+        if (fs.existsSync(logoPath)) {
+            const logoBase64 = fs.readFileSync(logoPath).toString('base64');
+            payload.attachments = [
+                {
+                    content: logoBase64,
+                    filename: 'logo.png',
+                    content_id: 'logo'
+                }
+            ];
+        }
+    }
+
+    const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${RESEND_API_KEY}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.message || `Resend HTTP Error: ${response.status}`);
+    }
+
+    return data;
+};
+
+// Function to handle email routing via Resend HTTP API
+const routeEmails = async (name, email, subject, message) => {
+    if (RESEND_API_KEY) {
+        console.log(`[RESEND] Attempting connection via Resend HTTP API...`);
         try {
-            const transporter = nodemailer.createTransport({
-                ...SMTP_CONFIG,
-                connectionTimeout: 5000, // 5 seconds
-                greetingTimeout: 5000,   // 5 seconds
-                socketTimeout: 5000      // 5 seconds
-            });
-            
             // 1. Send Notification to Admin
-            await transporter.sendMail({
-                from: `"${name} via V3CTOR" <${SMTP_CONFIG.auth.user}>`,
-                to: ADMIN_EMAIL,
-                replyTo: email,
-                subject: `[V3CTOR Inquiry] ${subject} - from ${name}`,
-                html: getAdminEmailTemplate(name, email, subject, message)
-            });
-            console.log(`[SMTP] Admin notification sent to ${ADMIN_EMAIL}`);
+            await sendResendEmail(
+                ADMIN_EMAIL,
+                `[V3CTOR Inquiry] ${subject} - from ${name}`,
+                getAdminEmailTemplate(name, email, subject, message),
+                email,
+                false
+            );
+            console.log(`[RESEND] Admin notification sent to ${ADMIN_EMAIL}`);
 
             // 2. Send Auto-Responder to Client
-            await transporter.sendMail({
-                from: `"V3CTOR Support" <${SMTP_CONFIG.auth.user}>`,
-                to: email,
-                subject: `We've received your inquiry: ${subject} - V3CTOR`,
-                html: getClientEmailTemplate(name, subject, message),
-                attachments: [{
-                    filename: 'logo.png',
-                    path: path.join(__dirname, 'logo.png'),
-                    cid: 'logo',
-                    disposition: 'inline'
-                }]
-            });
-            console.log(`[SMTP] Auto-responder sent to client ${email}`);
+            try {
+                await sendResendEmail(
+                    email,
+                    `We've received your inquiry: ${subject} - V3CTOR`,
+                    getClientEmailTemplate(name, subject, message),
+                    '',
+                    true
+                );
+                console.log(`[RESEND] Auto-responder sent to client ${email}`);
+            } catch (clientMailError) {
+                console.warn(`[RESEND WARNING] Auto-responder failed to send to client ${email}:`, clientMailError.message);
+                console.log(`[RESEND] Rerouting client auto-responder to Admin Email for verification...`);
+                
+                // Reroute to Admin Email
+                await sendResendEmail(
+                    ADMIN_EMAIL,
+                    `[REROUTED TO ADMIN] We've received your inquiry: ${subject} - V3CTOR`,
+                    `<div style="background:#fff3cd; color:#856404; padding:12px; margin-bottom:16px; border:1px solid #ffeeba; border-radius:4px; font-family:sans-serif; font-size:13px;">
+                        <strong>Sandbox Notice:</strong> This email was rerouted because Resend is in sandbox/free mode and cannot send directly to unverified external emails. Target Client: <strong>${email}</strong>
+                     </div>` + getClientEmailTemplate(name, subject, message),
+                    '',
+                    true
+                );
+                console.log(`[RESEND] Rerouted client auto-responder sent to ${ADMIN_EMAIL}`);
+            }
             
-            return { sent: true, mode: 'SMTP' };
+            return { sent: true, mode: 'RESEND' };
         } catch (error) {
-            console.error('[SMTP ERROR] Failed to dispatch mail via SMTP:', error.message);
+            console.error('[RESEND ERROR] Failed to dispatch mail via Resend API:', error.message);
             throw new Error(`Email delivery failure: ${error.message}`);
         }
     } else {
         // Fallback / Development Mode: log details to console
         console.log(`\n=================== [DEV MODE MAIL LOG] ===================`);
-        console.log(`[SMTP Config Missing - Running in Local Simulation Mode]`);
+        console.log(`[Resend Key Missing - Running in Local Simulation Mode]`);
         console.log(`-----------------------------------------------------------`);
         console.log(`1. notification email to admin:`);
         console.log(`   Recipient: ${ADMIN_EMAIL}`);
