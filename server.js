@@ -147,7 +147,12 @@ const routeEmails = async (name, email, subject, message) => {
     if (hasSmtpConfig) {
         console.log(`[SMTP] Attempting connection to ${SMTP_CONFIG.host}:${SMTP_CONFIG.port}...`);
         try {
-            const transporter = nodemailer.createTransport(SMTP_CONFIG);
+            const transporter = nodemailer.createTransport({
+                ...SMTP_CONFIG,
+                connectionTimeout: 5000, // 5 seconds
+                greetingTimeout: 5000,   // 5 seconds
+                socketTimeout: 5000      // 5 seconds
+            });
             
             // 1. Send Notification to Admin
             await transporter.sendMail({
