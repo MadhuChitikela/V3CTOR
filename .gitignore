@@ -1,0 +1,5 @@
+node_modules/
+.env
+submissions.json
+scratch_inspect_images.js
+search_logo.js

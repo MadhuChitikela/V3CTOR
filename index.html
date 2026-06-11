@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3CTOR | Engineering Ideas Into Scalable Reality</title>
+    <link rel="stylesheet" href="style.css?v=1.0.2">
+</head>
+<body>
+
+    <!-- Animated Circuit Background -->
+    <svg class="circuit-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="copper-blue-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#C67C4E;stop-opacity:0.6" />
+                <stop offset="100%" style="stop-color:#0056ff;stop-opacity:0.6" />
+            </linearGradient>
+            <linearGradient id="neural-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#0056ff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#C67C4E;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        
+        <!-- Top-left dense circuit branches -->
+        <path class="circuit-path" d="M-20,80 L120,80 L120,200 L220,200 L220,320 L320,320" />
+        <path class="circuit-path" d="M40,0 L40,60 L160,60 L160,160 L280,160 L280,280" />
+        <path class="circuit-path" d="M-10,280 L100,280 L100,400 L200,400 L200,520" />
+        <path class="circuit-path" d="M120,0 L120,120 L240,120 L240,240 L340,240" />
+        <path class="circuit-path" d="M-20,420 L80,420 L80,540 L180,540" />
+        <path class="circuit-path" d="M200,0 L200,100 L300,100 L300,220 L400,220" />
+        
+        <!-- Top-right dense circuit branches -->
+        <path class="circuit-path" d="M1460,80 L1320,80 L1320,200 L1220,200 L1220,320 L1120,320" />
+        <path class="circuit-path" d="M1400,0 L1400,60 L1280,60 L1280,160 L1160,160 L1160,280" />
+        <path class="circuit-path" d="M1490,280 L1340,280 L1340,400 L1240,400 L1240,520" />
+        <path class="circuit-path" d="M1320,0 L1320,120 L1200,120 L1200,240 L1100,240" />
+        <path class="circuit-path" d="M1460,420 L1360,420 L1360,540 L1260,540" />
+        <path class="circuit-path" d="M1240,0 L1240,100 L1140,100 L1140,220 L1040,220" />
+        
+        <!-- Bottom-left dense circuit branches -->
+        <path class="circuit-path" d="M-20,620 L100,620 L100,740 L200,740 L200,860" />
+        <path class="circuit-path" d="M40,900 L40,780 L140,780 L140,660 L260,660" />
+        <path class="circuit-path" d="M-10,780 L80,780 L80,900" />
+        <path class="circuit-path" d="M160,900 L160,800 L280,800 L280,700 L380,700" />
+        <path class="circuit-path" d="M-20,860 L60,860 L60,780" />
+        <path class="circuit-path" d="M120,900 L120,820 L220,820 L220,740" />
+        
+        <!-- Bottom-right dense circuit branches -->
+        <path class="circuit-path" d="M1460,620 L1340,620 L1340,740 L1240,740 L1240,860" />
+        <path class="circuit-path" d="M1400,900 L1400,780 L1300,780 L1300,660 L1180,660" />
+        <path class="circuit-path" d="M1490,780 L1400,780 L1400,900" />
+        <path class="circuit-path" d="M1280,900 L1280,800 L1160,800 L1160,700 L1060,700" />
+        <path class="circuit-path" d="M1460,860 L1380,860 L1380,780" />
+        <path class="circuit-path" d="M1320,900 L1320,820 L1220,820 L1220,740" />
+        <!-- Middle circuit branches (connecting left and right) -->
+        <path class="circuit-path" d="M-20,220 L450,220 L530,300 L910,300 L990,220 L1460,220" />
+        <path class="circuit-path" d="M-20,380 L350,380 L470,500 L970,500 L1090,380 L1460,380" />
+        <path class="circuit-path" d="M-20,480 L420,480 L520,580 L920,580 L1020,480 L1460,480" />
+        <path class="circuit-path" d="M400,0 L400,100 L500,200 L500,350 L600,450 L840,450 L940,350 L940,200 L1040,100 L1040,0" />
+        <path class="circuit-path" d="M500,900 L500,750 L620,630 L820,630 L940,750 L940,900" />
+
+        <!-- Animated pulse paths -->
+        <path class="circuit-path-pulse" d="M-20,160 L140,160 L140,280 L260,280 L260,400" />
+        <path class="circuit-path-pulse" d="M1460,160 L1300,160 L1300,280 L1180,280 L1180,400" />
+        <path class="circuit-path-pulse" d="M-20,560 L120,560 L120,680 L240,680" />
+        <path class="circuit-path-pulse" d="M1460,560 L1320,560 L1320,680 L1200,680" />
+        <path class="circuit-path-pulse" d="M-20,720 L100,720 L100,840 L200,840" />
+        <path class="circuit-path-pulse" d="M1460,720 L1340,720 L1340,840 L1240,840" />
+
+        <!-- Middle animated pulse paths -->
+        <path class="circuit-path-pulse" d="M-20,300 L480,300 L560,380 L880,380 L960,300 L1460,300" />
+        <path class="circuit-path-pulse" d="M300,900 L300,800 L420,680 L1020,680 L1140,800 L1140,900" />
+        
+        <!-- Circuit nodes - top left -->
+        <circle class="circuit-node" cx="120" cy="80" r="2.5" />
+        <circle class="circuit-node" cx="120" cy="200" r="2.5" />
+        <circle class="circuit-node" cx="220" cy="200" r="2.5" />
+        <circle class="circuit-node" cx="220" cy="320" r="2.5" />
+        <circle class="circuit-node" cx="320" cy="320" r="2.5" />
+        <circle class="circuit-node" cx="160" cy="60" r="2.5" />
+        <circle class="circuit-node" cx="160" cy="160" r="2.5" />
+        <circle class="circuit-node" cx="280" cy="160" r="2.5" />
+        <circle class="circuit-node" cx="280" cy="280" r="2.5" />
+        <circle class="circuit-node" cx="100" cy="280" r="2.5" />
+        <circle class="circuit-node" cx="100" cy="400" r="2.5" />
+        <circle class="circuit-node" cx="200" cy="400" r="2.5" />
+        <circle class="circuit-node" cx="200" cy="520" r="2.5" />
+        <circle class="circuit-node" cx="240" cy="120" r="2.5" />
+        <circle class="circuit-node" cx="240" cy="240" r="2.5" />
+        <circle class="circuit-node" cx="340" cy="240" r="2.5" />
+        <circle class="circuit-node" cx="80" cy="420" r="2.5" />
+        <circle class="circuit-node" cx="80" cy="540" r="2.5" />
+        <circle class="circuit-node" cx="180" cy="540" r="2.5" />
+        <circle class="circuit-node" cx="300" cy="100" r="2.5" />
+        <circle class="circuit-node" cx="300" cy="220" r="2.5" />
+        <circle class="circuit-node" cx="400" cy="220" r="2.5" />
+        
+        <!-- Circuit nodes - top right -->
+        <circle class="circuit-node" cx="1320" cy="80" r="2.5" />
+        <circle class="circuit-node" cx="1320" cy="200" r="2.5" />
+        <circle class="circuit-node" cx="1220" cy="200" r="2.5" />
+        <circle class="circuit-node" cx="1220" cy="320" r="2.5" />
+        <circle class="circuit-node" cx="1120" cy="320" r="2.5" />
+        <circle class="circuit-node" cx="1280" cy="60" r="2.5" />
+        <circle class="circuit-node" cx="1280" cy="160" r="2.5" />
+        <circle class="circuit-node" cx="1160" cy="160" r="2.5" />
+        <circle class="circuit-node" cx="1160" cy="280" r="2.5" />
+        <circle class="circuit-node" cx="1340" cy="280" r="2.5" />
+        <circle class="circuit-node" cx="1340" cy="400" r="2.5" />
+        <circle class="circuit-node" cx="1240" cy="400" r="2.5" />
+        <circle class="circuit-node" cx="1240" cy="520" r="2.5" />
+        <circle class="circuit-node" cx="1200" cy="120" r="2.5" />
+        <circle class="circuit-node" cx="1200" cy="240" r="2.5" />
+        <circle class="circuit-node" cx="1100" cy="240" r="2.5" />
+        <circle class="circuit-node" cx="1360" cy="420" r="2.5" />
+        <circle class="circuit-node" cx="1360" cy="540" r="2.5" />
+        <circle class="circuit-node" cx="1260" cy="540" r="2.5" />
+        <circle class="circuit-node" cx="1140" cy="100" r="2.5" />
+        <circle class="circuit-node" cx="1140" cy="220" r="2.5" />
+        <circle class="circuit-node" cx="1040" cy="220" r="2.5" />
+        
+        <!-- Circuit nodes - bottom left -->
+        <circle class="circuit-node" cx="100" cy="620" r="2.5" />
+        <circle class="circuit-node" cx="100" cy="740" r="2.5" />
+        <circle class="circuit-node" cx="200" cy="740" r="2.5" />
+        <circle class="circuit-node" cx="200" cy="860" r="2.5" />
+        <circle class="circuit-node" cx="140" cy="780" r="2.5" />
+        <circle class="circuit-node" cx="140" cy="660" r="2.5" />
+        <circle class="circuit-node" cx="260" cy="660" r="2.5" />
+        <circle class="circuit-node" cx="80" cy="780" r="2.5" />
+        <circle class="circuit-node" cx="80" cy="900" r="2.5" />
+        <circle class="circuit-node" cx="280" cy="800" r="2.5" />
+        <circle class="circuit-node" cx="280" cy="700" r="2.5" />
+        <circle class="circuit-node" cx="380" cy="700" r="2.5" />
+        <circle class="circuit-node" cx="60" cy="860" r="2.5" />
+        <circle class="circuit-node" cx="60" cy="780" r="2.5" />
+        <circle class="circuit-node" cx="220" cy="820" r="2.5" />
+        <circle class="circuit-node" cx="220" cy="740" r="2.5" />
+        
+        <!-- Circuit nodes - bottom right -->
+        <circle class="circuit-node" cx="1340" cy="620" r="2.5" />
+        <circle class="circuit-node" cx="1340" cy="740" r="2.5" />
+        <circle class="circuit-node" cx="1240" cy="740" r="2.5" />
+        <circle class="circuit-node" cx="1240" cy="860" r="2.5" />
+        <circle class="circuit-node" cx="1300" cy="780" r="2.5" />
+        <circle class="circuit-node" cx="1300" cy="660" r="2.5" />
+        <circle class="circuit-node" cx="1180" cy="660" r="2.5" />
+        <circle class="circuit-node" cx="1400" cy="780" r="2.5" />
+        <circle class="circuit-node" cx="1400" cy="900" r="2.5" />
+        <circle class="circuit-node" cx="1160" cy="800" r="2.5" />
+        <circle class="circuit-node" cx="1160" cy="700" r="2.5" />
+        <circle class="circuit-node" cx="1060" cy="700" r="2.5" />
+        <circle class="circuit-node" cx="1380" cy="860" r="2.5" />
+        <circle class="circuit-node" cx="1380" cy="780" r="2.5" />
+        <circle class="circuit-node" cx="1220" cy="820" r="2.5" />
+        <circle class="circuit-node" cx="1220" cy="740" r="2.5" />
+        
+        <!-- Middle circuit nodes -->
+        <circle class="circuit-node" cx="530" cy="300" r="2.5" />
+        <circle class="circuit-node" cx="910" cy="300" r="2.5" />
+        <circle class="circuit-node" cx="470" cy="500" r="2.5" />
+        <circle class="circuit-node" cx="970" cy="500" r="2.5" />
+        <circle class="circuit-node" cx="520" cy="580" r="2.5" />
+        <circle class="circuit-node" cx="920" cy="580" r="2.5" />
+        <circle class="circuit-node" cx="500" cy="200" r="2.5" />
+        <circle class="circuit-node" cx="940" cy="200" r="2.5" />
+        
+        <!-- Glowing nodes at pulse path intersections -->
+        <circle class="circuit-node-glow" cx="140" cy="160" r="3.5" />
+        <circle class="circuit-node-glow" cx="260" cy="280" r="3.5" />
+        <circle class="circuit-node-glow" cx="1300" cy="160" r="3.5" />
+        <circle class="circuit-node-glow" cx="1180" cy="280" r="3.5" />
+        <circle class="circuit-node-glow" cx="120" cy="560" r="3.5" />
+        <circle class="circuit-node-glow" cx="240" cy="680" r="3.5" />
+        <circle class="circuit-node-glow" cx="1320" cy="560" r="3.5" />
+        <circle class="circuit-node-glow" cx="1200" cy="680" r="3.5" />
+        <circle class="circuit-node-glow" cx="100" cy="720" r="3.5" />
+        <circle class="circuit-node-glow" cx="200" cy="840" r="3.5" />
+        <circle class="circuit-node-glow" cx="1340" cy="720" r="3.5" />
+        <circle class="circuit-node-glow" cx="1240" cy="840" r="3.5" />
+        
+        <!-- Middle glowing nodes -->
+        <circle class="circuit-node-glow" cx="560" cy="380" r="3.5" />
+        <circle class="circuit-node-glow" cx="880" cy="380" r="3.5" />
+        <circle class="circuit-node-glow" cx="420" cy="680" r="3.5" />
+        <circle class="circuit-node-glow" cx="1020" cy="680" r="3.5" />
+    </svg>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="navbar" id="navbar">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#innovations">Innovations</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            
+            <!-- Floating cards wrapper -->
+            <div class="cards-wrapper">
+                
+                <!-- Card 1: Browser Dashboard Mockup (Top-Left) -->
+                <div class="floating-asset asset-top-left">
+                    <div class="browser-chrome">
+                        <div class="browser-dots">
+                            <span class="dot-red"></span>
+                            <span class="dot-yellow"></span>
+                            <span class="dot-green"></span>
+                        </div>
+                        <div class="browser-address">v3ctor.ai/dashboard</div>
+                    </div>
+                    <div class="browser-body">
+                        <div class="browser-sidebar">
+                            <div class="sidebar-title">System</div>
+                            <a href="#" class="sidebar-link active">
+                                <span class="sidebar-icon"></span>
+                                Overview
+                            </a>
+                            <a href="#" class="sidebar-link">
+                                <span class="sidebar-icon" style="background:#e2e8f0;"></span>
+                                Metrics
+                            </a>
+                            <a href="#" class="sidebar-link">
+                                <span class="sidebar-icon" style="background:#e2e8f0;"></span>
+                                Config
+                            </a>
+                        </div>
+                        <div class="browser-content">
+                            <div class="browser-title">V3CTOR Engine</div>
+                            <div class="browser-dashboard-grid">
+                                <div class="dash-stat">
+                                    <div class="stat-label">CPU Core</div>
+                                    <div class="stat-number">42.4%</div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" style="width: 42%;"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-stat">
+                                    <div class="stat-label">Clusters</div>
+                                    <div class="stat-number" style="color: var(--accent-blue);">14/14</div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" style="width: 100%; background: var(--accent-blue);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="browser-chart-container">
+                                <div class="chart-header">
+                                    <span>Traffic Feed</span>
+                                    <span style="color: #22c55e;">Online</span>
+                                </div>
+                                <div class="browser-chart">
+                                    <div class="chart-bar" style="height: 35%;"></div>
+                                    <div class="chart-bar" style="height: 65%; background: var(--accent-copper);"></div>
+                                    <div class="chart-bar" style="height: 48%;"></div>
+                                    <div class="chart-bar" style="height: 85%; background: var(--accent-navy);"></div>
+                                    <div class="chart-bar" style="height: 55%;"></div>
+                                    <div class="chart-bar" style="height: 90%; background: var(--accent-blue);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Tablet App Dashboard (Top-Right) -->
+                <div class="floating-asset asset-top-right">
+                    <div class="tablet-chrome">
+                        <div class="tablet-logo">V3CTOR App</div>
+                        <div class="tablet-status">
+                            <span class="tablet-status-dot"></span>
+                            <span>Live: 99.9%</span>
+                        </div>
+                    </div>
+                    <div class="tablet-body">
+                        <div class="tablet-cards-row">
+                            <div class="tablet-card">
+                                <div class="tablet-card-label">Users</div>
+                                <div class="tablet-card-value">12.8k</div>
+                                <div class="tablet-card-trend">+14%</div>
+                            </div>
+                            <div class="tablet-card">
+                                <div class="tablet-card-label">Nodes</div>
+                                <div class="tablet-card-value">64</div>
+                                <div class="tablet-card-trend" style="color: var(--accent-blue);">Active</div>
+                            </div>
+                            <div class="tablet-card">
+                                <div class="tablet-card-label">Uptime</div>
+                                <div class="tablet-card-value">99.98%</div>
+                                <div class="tablet-card-trend">Stable</div>
+                            </div>
+                        </div>
+                        <div class="tablet-chart-container">
+                            <div class="tablet-chart-header">
+                                <span style="font-size: 6px; font-weight:700;">Data Sync Rate</span>
+                                <span style="font-size: 5.5px; color:var(--text-muted);">Last 24h</span>
+                            </div>
+                            <svg class="tablet-chart-line" viewBox="0 0 100 35" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0,30 Q15,5 30,18 T60,8 T90,24 T100,5" fill="none" stroke="var(--accent-blue)" stroke-width="1.8" />
+                                <path d="M0,30 Q15,5 30,18 T60,8 T90,24 T100,5 L100,35 L0,35 Z" fill="rgba(0, 86, 255, 0.05)" stroke="none" />
+                            </svg>
+                        </div>
+                        <div class="tablet-user-row">
+                            <div class="tablet-user-title">Team</div>
+                            <div class="tablet-avatars">
+                                <div class="tablet-avatar" style="background:#d38765; z-index: 3;"></div>
+                                <div class="tablet-avatar" style="background:#0a2540; z-index: 2; margin-left: -5px;"></div>
+                                <div class="tablet-avatar" style="background:#0056ff; z-index: 1; margin-left: -5px;"></div>
+                            </div>
+                            <div class="tablet-btn">Manage</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Live Console Terminal (Bottom-Left) -->
+                <div class="floating-asset asset-bottom-left">
+                    <div class="terminal-chrome">
+                        <div class="terminal-title">console@v3ctor: ~/deploy</div>
+                        <div class="terminal-window-buttons">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="term-line">
+                            <span class="term-prompt">v3ctor:~$</span>
+                            <span class="term-cmd">deploy --prod --now</span>
+                        </div>
+                        <div class="term-line term-info">
+                            <span>[12:00:15] Building static assets... DONE</span>
+                        </div>
+                        <div class="term-line term-info">
+                            <span>[12:00:17] Deploying containers to cluster...</span>
+                        </div>
+                        <div class="term-line term-success">
+                            <span>[12:00:19] [SUCCESS] All 12 edge pods verified.</span>
+                        </div>
+                        <div class="term-line">
+                            <span style="color:#94a3b8;">Uptime URL:</span>
+                            <span class="term-link">https://v3ctor.ai</span>
+                        </div>
+                        <div class="term-line">
+                            <span class="term-prompt">v3ctor:~$</span>
+                            <span class="term-cursor"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Neural Network (Bottom-Right) -->
+                <div class="floating-asset asset-bottom-right">
+                    <div class="neural-body">
+                        <div class="neural-card-header">
+                            <div class="neural-card-title">Inference Engine</div>
+                            <div class="neural-card-status">Active</div>
+                        </div>
+                        <div class="neural-svg-container">
+                            <svg class="neural-svg" viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="neural-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#0056ff;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#C67C4E;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path id="path-i2-h2" d="M 15 35 L 55 27" fill="none" stroke="none" />
+                                <path id="path-h2-o1" d="M 55 27 L 95 20" fill="none" stroke="none" />
+                                <path id="path-i3-h3" d="M 15 55 L 55 44" fill="none" stroke="none" />
+                                <path id="path-h3-o2" d="M 55 44 L 95 50" fill="none" stroke="none" />
+
+                                <line class="neural-connection" x1="15" y1="15" x2="55" y2="10" />
+                                <line class="neural-connection" x1="15" y1="15" x2="55" y2="27" />
+                                <line class="neural-connection" x1="15" y1="15" x2="55" y2="44" />
+                                <line class="neural-connection" x1="15" y1="35" x2="55" y2="10" />
+                                <line class="neural-connection" x1="15" y1="35" x2="55" y2="27" />
+                                <line class="neural-connection" x1="15" y1="35" x2="55" y2="44" />
+                                <line class="neural-connection" x1="15" y1="35" x2="55" y2="60" />
+                                <line class="neural-connection" x1="15" y1="55" x2="55" y2="27" />
+                                <line class="neural-connection" x1="15" y1="55" x2="55" y2="44" />
+                                <line class="neural-connection" x1="15" y1="55" x2="55" y2="60" />
+
+                                <line class="neural-connection" x1="55" y1="10" x2="95" y2="20" />
+                                <line class="neural-connection" x1="55" y1="10" x2="95" y2="50" />
+                                <line class="neural-connection" x1="55" y1="27" x2="95" y2="20" />
+                                <line class="neural-connection" x1="55" y1="27" x2="95" y2="50" />
+                                <line class="neural-connection" x1="55" y1="44" x2="95" y2="20" />
+                                <line class="neural-connection" x1="55" y1="44" x2="95" y2="50" />
+                                <line class="neural-connection" x1="55" y1="60" x2="95" y2="50" />
+
+                                <path class="neural-connection-active" d="M 15 35 L 55 27 L 95 20" />
+                                <path class="neural-connection-active" d="M 15 55 L 55 44 L 95 50" />
+
+                                <circle r="1.8" fill="var(--accent-blue)">
+                                    <animateMotion dur="2.5s" repeatCount="indefinite">
+                                        <mpath href="#path-i2-h2"/>
+                                    </animateMotion>
+                                </circle>
+                                <circle r="1.8" fill="var(--accent-copper)">
+                                    <animateMotion dur="2.5s" begin="1.25s" repeatCount="indefinite">
+                                        <mpath href="#path-h2-o1"/>
+                                    </animateMotion>
+                                </circle>
+                                <circle r="1.8" fill="var(--accent-blue)">
+                                    <animateMotion dur="3s" repeatCount="indefinite">
+                                        <mpath href="#path-i3-h3"/>
+                                    </animateMotion>
+                                </circle>
+                                <circle r="1.8" fill="var(--accent-copper)">
+                                    <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite">
+                                        <mpath href="#path-h3-o2"/>
+                                    </animateMotion>
+                                </circle>
+
+                                <circle class="neural-node input" cx="15" cy="15" r="4" />
+                                <circle class="neural-node input neural-node-pulse" cx="15" cy="35" r="4" />
+                                <circle class="neural-node input" cx="15" cy="55" r="4" />
+
+                                <circle class="neural-node hidden" cx="55" cy="10" r="4" />
+                                <circle class="neural-node hidden neural-node-pulse" cx="55" cy="27" r="4" />
+                                <circle class="neural-node hidden" cx="55" cy="44" r="4" />
+                                <circle class="neural-node hidden" cx="55" cy="60" r="4" />
+
+                                <circle class="neural-node output neural-node-pulse" cx="95" cy="20" r="4" />
+                                <circle class="neural-node output" cx="95" cy="50" r="4" />
+
+                                <g class="neural-labels" style="font-size: 5px;">
+                                    <text x="5" y="66">Inputs</text>
+                                    <text x="43" y="66">Model</text>
+                                    <text x="85" y="66">Logits</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Central Hero Elements -->
+            <div class="hero-main">
+                <div class="hero-logo-wrapper">
+                    <img class="hero-logo" src="logo.png" alt="V3CTOR Logo">
+                </div>
+                
+                <h1>ENGINEERING IDEAS INTO SCALABLE REALITY</h1>
+                
+                <p>Turning visionary ideas into impactful digital experiences through innovation, design, and technology.</p>
+                
+                <button class="hero-cta" data-target="#contact">DEPLOY YOUR IDEA</button>
+
+                <!-- Tech Stack logos -->
+                <div class="tech-stack">
+                    <div class="tech-icon-wrap">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                    </div>
+                    <div class="tech-icon-wrap">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    </div>
+                    <div class="tech-icon-wrap">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                    </div>
+                    <div class="tech-icon-wrap">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="services-container">
+            
+            <!-- Section Header -->
+            <div class="services-header">
+                <div class="services-tagline">Our Services</div>
+                <h2 class="services-title">Tailored Solutions for <span class="highlight-copper">Enterprises</span> & <span class="highlight-copper">Academic Builders</span></h2>
+            </div>
+            
+            <!-- Services Columns Grid -->
+            <div class="services-grid-wrapper">
+                
+                <!-- Commercial Solutions column group -->
+                <div class="services-group commercial-group">
+                    <h3 class="group-title">COMMERCIAL SOLUTIONS <span class="sub-label">— For Clients</span></h3>
+                    <div class="group-cards">
+                        
+                        <!-- Card 1: Web & Mobile -->
+                        <div class="service-card card-commercial">
+                            <div class="card-num">1</div>
+                            <div class="card-graphic">
+                                <img src="images/service_web_mobile.png" alt="Web & Mobile Development" class="graphic-img">
+                            </div>
+                            <h4 class="card-title">Full-Stack Web & Mobile Development</h4>
+                            <p class="card-desc">Custom, Scalable Web Applications and Responsive UI/UX</p>
+                        </div>
+                        
+                        <!-- Card 2: AI & ML -->
+                        <div class="service-card card-commercial">
+                            <div class="card-num">2</div>
+                            <div class="card-graphic">
+                                <img src="images/service_ai_ml.png" alt="AI & Machine Learning" class="graphic-img">
+                            </div>
+                            <h4 class="card-title">AI & Machine Learning</h4>
+                            <p class="card-desc">Intelligent Automation and Data-Driven Insights via Python</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Academic Innovations column group -->
+                <div class="services-group academic-group">
+                    <h3 class="group-title">ACADEMIC INNOVATIONS <span class="sub-label">— For Students</span></h3>
+                    <div class="group-cards">
+                        
+                        <!-- Card 3: IEEE Projects -->
+                        <div class="service-card card-academic">
+                            <div class="card-num">3</div>
+                            <div class="card-graphic">
+                                <img src="images/service_ieee_project.png" alt="Custom Project Engineering" class="graphic-img">
+                            </div>
+                            <h4 class="card-title">Custom Project Engineering (IEEE Standards)</h4>
+                            <p class="card-desc">Transforming academic ideas into working high-standard code</p>
+                        </div>
+                        
+                        <!-- Card 4: Hackathon Strategy -->
+                        <div class="service-card card-academic">
+                            <div class="card-num">4</div>
+                            <div class="card-graphic">
+                                <img src="images/service_hackathon.png" alt="Hackathon Strategy & Mentorship" class="graphic-img">
+                            </div>
+                            <h4 class="card-title">Hackathon Strategy & Mentorship</h4>
+                            <p class="card-desc">Strategic Guidance and Design for Winning High-Pressure Builds</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Innovations Showcase Section -->
+    <section class="innovations-section" id="innovations">
+        <div class="innovations-container">
+            
+            <!-- Section Header -->
+            <div class="innovations-header">
+                <div class="innovations-tagline">Innovations Showcase</div>
+                <h2 class="innovations-title">Turning Complex Problem Statements into <span class="highlight-copper">Scalable Tech Solutions</span></h2>
+            </div>
+            
+            <!-- Innovations Grid -->
+            <div class="innovations-grid">
+                
+                <!-- Card 1: DefectVision AI -->
+                <div class="innovation-card">
+                    <div class="innov-card-top">DefectVision AI</div>
+                    <div class="innov-graphic">
+                        <img src="images/project_defectvision.png" alt="DefectVision AI" class="innov-img">
+                    </div>
+                    <h4 class="innov-title">DefectVision AI</h4>
+                    <p class="innov-desc">AI-powered software defect prediction using 1D/2D LCNN models. Achieved 94.5% accuracy explaining decisions via LIME and SHAP.</p>
+                </div>
+                
+                <!-- Card 2: Smart Crop Advisory System -->
+                <div class="innovation-card">
+                    <div class="innov-card-top">Smart Crop Advisory System</div>
+                    <div class="innov-graphic">
+                        <img src="images/project_smart_crop.png" alt="Smart Crop Advisory System" class="innov-img">
+                    </div>
+                    <h4 class="innov-title">Smart Crop Advisory System</h4>
+                    <p class="innov-desc">AI/ML solution for predictive farming and crop recommendations based on real-time soil and weather datasets.</p>
+                </div>
+                
+                <!-- Card 3: Freshora -->
+                <div class="innovation-card">
+                    <div class="innov-card-top">Freshora App</div>
+                    <div class="innov-graphic">
+                        <img src="images/project_freshora.png" alt="Freshora" class="innov-img">
+                    </div>
+                    <h4 class="innov-title">Freshora – Grocery App</h4>
+                    <p class="innov-desc">Full-stack e-commerce delivery platform with real-time route simulations and AI-driven predictive recommendations.</p>
+                </div>
+                
+                <!-- Card 4: AutoFlowOps -->
+                <div class="innovation-card">
+                    <div class="innov-card-top">AutoFlowOps</div>
+                    <div class="innov-graphic">
+                        <img src="images/project_autoflowops.png" alt="AutoFlowOps" class="innov-img">
+                    </div>
+                    <h4 class="innov-title">AutoFlowOps Automation</h4>
+                    <p class="innov-desc">Workflow engine automating repetitive business processes and enterprise approvals via trigger-based logic.</p>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section" id="process">
+        <div class="process-container">
+            
+            <!-- Section Header -->
+            <div class="process-header">
+                <div class="process-tagline">Our Process</div>
+                <h2 class="process-title">Engineering Reliable Digital Systems From <span class="highlight-copper">Inception to Production</span></h2>
+            </div>
+            
+            <!-- Process Grid / Timeline -->
+            <div class="process-grid">
+                
+                <!-- Step 1: Architectural Discovery -->
+                <div class="process-card">
+                    <div class="process-step-num">01</div>
+                    <div class="process-graphic">
+                        <img src="images/process_step1.png" alt="Architectural Discovery" class="process-img">
+                    </div>
+                    <h4 class="process-card-title">Architectural Discovery</h4>
+                    <p class="process-desc">Deep requirements mapping to define optimal technical stacks. We draft system dependencies, data schemas, and API design routes tailored to scale.</p>
+                </div>
+                
+                <!-- Step 2: Agile Engineering -->
+                <div class="process-card">
+                    <div class="process-step-num">02</div>
+                    <div class="process-graphic">
+                        <img src="images/process_step2.png" alt="Agile Engineering" class="process-img">
+                    </div>
+                    <h4 class="process-card-title">Agile Engineering</h4>
+                    <p class="process-desc">Rapid development of clean front-end components and high-performance backends. We integrate continuous unit testing and container build-pipelines.</p>
+                </div>
+                
+                <!-- Step 3: Analytics & Verification -->
+                <div class="process-card">
+                    <div class="process-step-num">03</div>
+                    <div class="process-graphic">
+                        <img src="images/process_step3.png" alt="Analytics & Verification" class="process-img">
+                    </div>
+                    <h4 class="process-card-title">Analytics & Verification</h4>
+                    <p class="process-desc">Explainable validation and software defect forecasting. We leverage LIME/SHAP analytics and automated lint sweeps to guarantee code robustness.</p>
+                </div>
+                
+                <!-- Step 4: Edge Deployment & Scale -->
+                <div class="process-card">
+                    <div class="process-step-num">04</div>
+                    <div class="process-graphic">
+                        <img src="images/process_step4.png" alt="Edge Deployment & Scale" class="process-img">
+                    </div>
+                    <h4 class="process-card-title">Edge Deployment & Scale</h4>
+                    <p class="process-desc">Automated rollout across global edge CDN clusters and cloud node networks. We monitor live response times, system health, and secure connections.</p>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="team-container">
+            
+            <!-- Section Header -->
+            <div class="team-header">
+                <div class="team-tagline">Our Team</div>
+                <h2 class="team-title">Meet the Builders Behind <span class="highlight-copper">V3CTOR</span></h2>
+            </div>
+            
+            <!-- Team Grid -->
+            <div class="team-grid">
+                
+                <!-- Partner 1 -->
+                <div class="team-card">
+                    <div class="team-avatar-wrap">
+                        <img src="images/team_member1.png" alt="Madhu" class="team-img">
+                    </div>
+                    <h4 class="team-name">Madhu</h4>
+                    <div class="team-role">Co-Founder & Lead Gen AI/AWS Architect</div>
+                    <p class="team-bio">Specializes in generative AI pipelines, AWS cloud deployments, serverless engineering, and scalable architecture design.</p>
+                </div>
+                
+                <!-- Partner 2 -->
+                <div class="team-card">
+                    <div class="team-avatar-wrap">
+                        <img src="images/team_member2.png" alt="Ashwini" class="team-img">
+                    </div>
+                    <h4 class="team-name">Ashwini</h4>
+                    <div class="team-role">Co-Founder, HR & Full-Stack AI/ML Engineer</div>
+                    <p class="team-bio">Manages operational recruitment pipelines while constructing full-stack systems and developing machine learning layers.</p>
+                </div>
+                
+                <!-- Partner 3 -->
+                <div class="team-card">
+                    <div class="team-avatar-wrap">
+                        <img src="images/team_member3.jpg" alt="Pilla Lohith" class="team-img">
+                    </div>
+                    <h4 class="team-name">Pilla Lohith</h4>
+                    <div class="team-role">Co-Founder & Data Engineer | Full-Stack Developer</div>
+                    <p class="team-bio">Specializes in high-throughput data engineering pipelines, responsive frontend layouts, and full-stack web architectures.</p>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            
+            <!-- Section Header -->
+            <div class="contact-header">
+                <div class="contact-tagline">Secure Transmission</div>
+                <h2 class="contact-title">Initiate Your Project <span class="highlight-copper">Deployment</span></h2>
+            </div>
+            
+            <div class="contact-grid">
+                
+                <!-- Left: Contact Details Cards -->
+                <div class="contact-details">
+                    
+                    <!-- Detail Card 1 -->
+                    <div class="contact-detail-card">
+                        <div class="detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <h5>Direct Feed</h5>
+                            <a href="mailto:vertexproject.in@gmail.com">vertexproject.in@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Detail Card 2 -->
+                    <div class="contact-detail-card">
+                        <div class="detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <h5>Instagram Feed</h5>
+                            <a href="https://www.instagram.com/v3ctor.in?igsh=ZGhhcXRlOTUxaTk3" target="_blank" rel="noopener noreferrer">@v3ctor.in</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Detail Card 3 -->
+                    <div class="contact-detail-card">
+                        <div class="detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <h5>WhatsApp Chat</h5>
+                            <a href="https://wa.me/919391189053" target="_blank" rel="noopener noreferrer">Secure Message Feed</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Right: Contact Form -->
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contact-form">
+                        
+                        <!-- Honeypot anti-spam field -->
+                        <div style="display: none !important;" aria-hidden="true">
+                            <input type="text" id="hidden_bot_field" name="hidden_bot_field" tabindex="-1" autocomplete="off">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-name">Signal Origin (Name)</label>
+                                <input type="text" id="form-name" required placeholder="Your name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="form-email">Return Node (Email)</label>
+                                <input type="email" id="form-email" required placeholder="name@domain.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="form-subject">Subject Header</label>
+                            <input type="text" id="form-subject" required placeholder="Project concept or inquiry">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="form-message">System Payload (Message)</label>
+                            <textarea id="form-message" rows="5" required placeholder="Describe your scalable idea..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-btn" id="form-submit-btn">
+                            <span>TRANSMIT DISCOVERY</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Anti-spam & Status alerts -->
+                        <div class="form-feedback-success" id="form-success" style="display: none;">
+                            <div class="feedback-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </div>
+                            <div class="feedback-text">
+                                <h6>TRANSMISSION SUCCESSFUL</h6>
+                                <p>Honeypot clean. Return signal initialized. Expect a response soon.</p>
+                                <p style="font-size: 11px; margin-top: 6px; opacity: 0.85; font-style: italic;">* Note: Please check your spam folder if you do not see our automated confirmation email shortly.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-feedback-error" id="form-error" style="display: none;">
+                            <div class="feedback-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="18" y1="6" x2="6" y2="18"/>
+                                    <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                            </div>
+                            <div class="feedback-text">
+                                <h6 id="error-title">CONNECTION REJECTED</h6>
+                                <p id="error-desc">System flagged this submission as automated spam.</p>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+            </div>
+            
+            <!-- Footer Section -->
+            <footer>
+                <div class="footer-container">
+                    <div class="footer-branding">
+                        <img src="logo.png" alt="V3CTOR" class="footer-logo">
+                        <p class="footer-tagline">
+                            <span class="tagline-word">design</span>
+                            <span class="tagline-dot">&bull;</span>
+                            <span class="tagline-word">develop</span>
+                            <span class="tagline-dot">&bull;</span>
+                            <span class="tagline-word">deploy</span>
+                        </p>
+                    </div>
+                    
+                    <div class="footer-bottom">
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#innovations">Innovations</a></li>
+                            <li><a href="#process">Process</a></li>
+                            <li><a href="#team">Team</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                        
+                        <div class="footer-socials">
+                            <a href="https://www.instagram.com/v3ctor.in?igsh=ZGhhcXRlOTUxaTk3" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                </svg>
+                            </a>
+                            <a href="https://wa.me/919391189053" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="footer-copy">
+                            &copy; 2026 V3CTOR. All rights reserved. &bull; India
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            
+        </div>
+    </section>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Scroll-driven fade out and collapse exit back to center (where they came from) for only the 4 floating cards
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroHeight = window.innerHeight;
+            const isDesktop = window.innerWidth > 1024;
+            
+            // Exit animation completes over the first 60% of viewport height
+            const progress = Math.min(scrollY / (heroHeight * 0.6), 1);
+            
+            const topLeft = document.querySelector('.asset-top-left');
+            const topRight = document.querySelector('.asset-top-right');
+            const bottomLeft = document.querySelector('.asset-bottom-left');
+            const bottomRight = document.querySelector('.asset-bottom-right');
+            const cards = [topLeft, topRight, bottomLeft, bottomRight];
+            
+            if (scrollY <= 5) {
+                // Clear inline styles to restore CSS floating keyframe animations when at the top
+                cards.forEach(card => {
+                    if (card) {
+                        card.style.opacity = '';
+                        card.style.transform = '';
+                        card.style.pointerEvents = 'auto';
+                    }
+                });
+            } else {
+                // Top-Left card: fly up and left
+                if (topLeft) {
+                    topLeft.style.opacity = 1 - progress;
+                    if (isDesktop) {
+                        topLeft.style.transform = `perspective(900px) rotateX(60deg) rotateZ(-45deg) translate3d(${-progress * 150}px, ${-progress * 150}px, ${-progress * 100}px)`;
+                    } else {
+                        topLeft.style.transform = `translateY(${-progress * 30}px)`;
+                    }
+                    topLeft.style.pointerEvents = progress > 0.8 ? 'none' : 'auto';
+                }
+                
+                // Top-Right card: fly up and right
+                if (topRight) {
+                    topRight.style.opacity = 1 - progress;
+                    if (isDesktop) {
+                        topRight.style.transform = `perspective(900px) rotateX(60deg) rotateZ(45deg) translate3d(${progress * 150}px, ${-progress * 150}px, ${-progress * 100}px)`;
+                    } else {
+                        topRight.style.transform = `translateY(${-progress * 30}px)`;
+                    }
+                    topRight.style.pointerEvents = progress > 0.8 ? 'none' : 'auto';
+                }
+                
+                // Bottom-Left card: fly down and left
+                if (bottomLeft) {
+                    bottomLeft.style.opacity = 1 - progress;
+                    if (isDesktop) {
+                        bottomLeft.style.transform = `perspective(900px) rotateX(60deg) rotateZ(-45deg) translate3d(${-progress * 150}px, ${progress * 150}px, ${-progress * 100}px)`;
+                    } else {
+                        bottomLeft.style.transform = `translateY(${-progress * 30}px)`;
+                    }
+                    bottomLeft.style.pointerEvents = progress > 0.8 ? 'none' : 'auto';
+                }
+                
+                // Bottom-Right card: fly down and right
+                if (bottomRight) {
+                    bottomRight.style.opacity = 1 - progress;
+                    if (isDesktop) {
+                        bottomRight.style.transform = `perspective(900px) rotateX(60deg) rotateZ(45deg) translate3d(${progress * 150}px, ${progress * 150}px, ${-progress * 100}px)`;
+                    } else {
+                        bottomRight.style.transform = `translateY(${-progress * 30}px)`;
+                    }
+                    bottomRight.style.pointerEvents = progress > 0.8 ? 'none' : 'auto';
+                }
+            }
+        });
+
+        // Intersection Observer for revealing cards on scroll (Services + Innovations + Process + Team)
+        const animationCards = document.querySelectorAll('.service-card, .innovation-card, .process-card, .team-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    // Add entrance-done class after entrance animation resolves (0.8s duration + staggered delays)
+                    setTimeout(() => {
+                        if (entry.target.classList.contains('revealed')) {
+                            entry.target.classList.add('entrance-done');
+                        }
+                    }, 1500);
+                } else {
+                    entry.target.classList.remove('revealed');
+                    entry.target.classList.remove('entrance-done');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        animationCards.forEach(card => {
+            cardObserver.observe(card);
+        });
+
+        // Active navbar link indicator on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navItems = document.querySelectorAll('.nav-links a');
+        
+        const activeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        if (item.getAttribute('href') === `#${id}`) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        sections.forEach(section => {
+            activeObserver.observe(section);
+        });
+
+        // Intercept navbar, footer links, and CTA clicks for smooth scrolling without scroll-snapping conflicts
+        document.querySelectorAll('.nav-links a[href^="#"], .footer-links a[href^="#"], .hero-cta').forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href') || this.getAttribute('data-target') || '#services';
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Temporarily disable scroll snapping on desktop
+                    const htmlEl = document.documentElement;
+                    htmlEl.style.scrollSnapType = 'none';
+                    
+                    // Scroll to target
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Close mobile dropdown if active
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    }
+                    
+                    // Re-enable scroll snapping after the smooth scroll animation completes
+                    setTimeout(() => {
+                        htmlEl.style.scrollSnapType = '';
+                        // Update active nav link class manually
+                        navItems.forEach(item => {
+                            if (item.getAttribute('href') === targetId) {
+                                item.classList.add('active');
+                            } else {
+                                item.classList.remove('active');
+                            }
+                        });
+                    }, 800);
+                }
+            });
+        });
+
+        // Contact Form Submission & Honeypot Blocker
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('form-submit-btn');
+        const successFeedback = document.getElementById('form-success');
+        const errorFeedback = document.getElementById('form-error');
+        const errorTitle = document.getElementById('error-title');
+        const errorDesc = document.getElementById('error-desc');
+        const honeypot = document.getElementById('hidden_bot_field');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset feedback visibility
+                successFeedback.style.display = 'none';
+                errorFeedback.style.display = 'none';
+
+                // Check honeypot field
+                if (honeypot && honeypot.value !== '') {
+                    console.warn("Spam bot submission blocked via honeypot.");
+                    if (errorTitle) errorTitle.textContent = 'CONNECTION REJECTED';
+                    if (errorDesc) errorDesc.textContent = 'System flagged this submission as automated spam.';
+                    errorFeedback.style.display = 'flex';
+                    errorFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    return;
+                }
+
+                // Gather payload data
+                const payload = {
+                    name: document.getElementById('form-name').value,
+                    email: document.getElementById('form-email').value,
+                    subject: document.getElementById('form-subject').value,
+                    message: document.getElementById('form-message').value,
+                    honeypot: honeypot ? honeypot.value : ''
+                };
+
+                // Normal human behavior: send real transmission to local backend
+                submitBtn.disabled = true;
+                const originalBtnText = submitBtn.querySelector('span').textContent;
+                submitBtn.querySelector('span').textContent = 'TRANSMITTING...';
+
+                // Determine backend API URL (local development vs production backend host)
+                const apiHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                    ? 'http://localhost:3000'
+                    : 'https://v3ctor-backend.onrender.com'; // REPLACE this URL with your production backend host!
+
+                fetch(`${apiHost}/api/contact`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Server returned an error status.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('span').textContent = originalBtnText;
+                    
+                    if (data.status === 'success') {
+                        // Show success
+                        successFeedback.style.display = 'flex';
+                        contactForm.reset();
+                        successFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } else {
+                        // Show rejection feedback
+                        if (errorTitle) errorTitle.textContent = 'TRANSMISSION REJECTED';
+                        if (errorDesc) errorDesc.textContent = data.message || 'Server rejected the submission payload.';
+                        errorFeedback.style.display = 'flex';
+                        errorFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                })
+                .catch(error => {
+                    console.error('Transmission error:', error);
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('span').textContent = originalBtnText;
+                    
+                    // Show connection offline/network fail
+                    if (errorTitle) errorTitle.textContent = 'SERVER OFFLINE';
+                    if (errorDesc) errorDesc.textContent = 'Could not connect to the backend server. Please verify you have run "node server.js" in your terminal.';
+                    errorFeedback.style.display = 'flex';
+                    errorFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            });
+        }
+    </script>
+</body>
+</html>
