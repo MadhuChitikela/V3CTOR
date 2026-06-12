@@ -2161,7 +2161,7 @@ footer {
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
     html, body {
         height: auto;
         overflow: auto;
@@ -2322,19 +2322,28 @@ footer {
 
 }
 
-@media (min-width: 901px) and (max-width: 1024px) {
-    .cards-wrapper {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+@media (min-width: 901px) and (max-width: 1200px) {
+    .asset-top-left {
+        left: -40px !important;
+        --base-transform: perspective(900px) rotateX(60deg) rotateZ(-45deg) scale(0.75);
     }
-    
-    .floating-asset {
-        height: 225px !important;
+    .asset-top-right {
+        right: -40px !important;
+        --base-transform: perspective(900px) rotateX(60deg) rotateZ(45deg) scale(0.75);
     }
-
-    .browser-body {
-        grid-template-columns: 85px 1fr;
+    .asset-bottom-left {
+        left: -40px !important;
+        --base-transform: perspective(900px) rotateX(60deg) rotateZ(-45deg) scale(0.75);
+    }
+    .asset-bottom-right {
+        right: -40px !important;
+        --base-transform: perspective(900px) rotateX(60deg) rotateZ(45deg) scale(0.75);
+    }
+    .hero-main {
+        max-width: 480px !important;
+    }
+    .hero h1 {
+        font-size: 2.2rem !important;
     }
 }
 
@@ -2596,7 +2605,7 @@ footer {
 /* ==========================================
    Desktop Scroll Snapping
    ========================================== */
-@media (min-width: 1025px) {
+@media (min-width: 901px) {
     html {
         scroll-behavior: auto; /* Prevent smooth scroll conflicts with scroll snapping */
         scroll-snap-type: y mandatory;
@@ -2624,6 +2633,39 @@ footer {
     .contact-section {
         scroll-snap-align: start;
         scroll-snap-stop: always;
+    }
+}
+
+/* ==========================================
+   Portrait & Tall Viewport Overrides
+   (Eliminates massive vertical gaps on mobile devices in Desktop View and vertical monitors)
+   ========================================== */
+@media (orientation: portrait) {
+    html {
+        scroll-snap-type: none !important;
+    }
+
+    .hero {
+        height: auto !important;
+        min-height: auto !important;
+        padding-top: 120px !important;
+        padding-bottom: 80px !important;
+    }
+
+    .hero-container {
+        height: auto !important;
+    }
+
+    .services-section,
+    .process-section,
+    .innovations-section,
+    .team-section,
+    .contact-section {
+        height: auto !important;
+        min-height: auto !important;
+        padding-top: 100px !important;
+        padding-bottom: 100px !important;
+        scroll-snap-align: none !important;
     }
 }
 

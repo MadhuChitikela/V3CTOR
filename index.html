@@ -907,7 +907,7 @@
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const heroHeight = window.innerHeight;
-            const isDesktop = window.innerWidth > 1024;
+            const isDesktop = window.innerWidth > 900;
             
             // Exit animation completes over the first 60% of viewport height
             const progress = Math.min(scrollY / (heroHeight * 0.6), 1);
