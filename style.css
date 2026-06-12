@@ -2603,6 +2603,30 @@ footer {
 }
 
 /* ==========================================
+   Background Logo Watermark (Except Hero)
+   ========================================== */
+.services-section::before,
+.innovations-section::before,
+.process-section::before,
+.team-section::before,
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(80vw, 550px);
+    height: min(80vw, 550px);
+    background-image: url('logo_symbol.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.08; /* More visible watermark */
+    pointer-events: none;
+    z-index: -1; /* Place behind all content within the section */
+}
+
+/* ==========================================
    Desktop Scroll Snapping
    ========================================== */
 @media (min-width: 901px) {
