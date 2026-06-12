@@ -1001,24 +1001,50 @@
         const sections = document.querySelectorAll('section[id]');
         const navItems = document.querySelectorAll('.nav-links a');
         
-        const activeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navItems.forEach(item => {
-                        if (item.getAttribute('href') === `#${id}`) {
-                            item.classList.add('active');
-                        } else {
-                            item.classList.remove('active');
-                        }
-                    });
+        function updateActiveNav() {
+            const scrollPosition = window.scrollY + 200; // Trigger slightly before reaching the section
+            
+            // Force Home to be active when at the top of the page
+            if (window.scrollY < 100) {
+                navItems.forEach(item => {
+                    if (item.getAttribute('href') === '#home') {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                return;
+            }
+            
+            let activeSectionId = null;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    activeSectionId = section.getAttribute('id');
                 }
             });
-        }, { threshold: 0.3 });
+            
+            // Force Contact active when scrolled to the very bottom of the page
+            if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 60) {
+                activeSectionId = 'contact';
+            }
+            
+            if (activeSectionId) {
+                navItems.forEach(item => {
+                    if (item.getAttribute('href') === `#${activeSectionId}`) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+        }
         
-        sections.forEach(section => {
-            activeObserver.observe(section);
-        });
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
 
         // Intercept navbar, footer links, and CTA clicks for smooth scrolling without scroll-snapping conflicts
         document.querySelectorAll('.nav-links a[href^="#"], .footer-links a[href^="#"], .hero-cta').forEach(trigger => {
