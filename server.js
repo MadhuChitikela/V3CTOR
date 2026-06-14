@@ -493,7 +493,7 @@ const server = http.createServer(async (req, res) => {
 
     // 6. GET Static Files (index.html, style.css, logo, images)
     if (req.method === 'GET') {
-        let reqUrl = pathname === '/' ? '/index.html' : pathname;
+        let reqUrl = pathname === '/' ? '/index.html' : (pathname === '/favicon.ico' ? '/logo_symbol.png' : pathname);
         
         // Resolve path securely and block directory traversals
         const safeUrl = path.normalize(reqUrl).replace(/^(\.\.[\/\\])+/, '');
